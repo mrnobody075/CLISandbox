@@ -1,40 +1,22 @@
 import random
-import string  
 
-
-letters = string.ascii_letters  # 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-numbers = string.digits         # '0123456789'
-symbols = "!#$%&()*+"
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 print("Welcome to the PyPassword Generator!")
-
-# Input validation
-def get_positive_int(prompt):
-    while True:
-        try:
-            value = int(input(prompt))
-            if value < 0:
-                print("Please enter a positive number.")
-            else:
-                return value
-        except ValueError:
-            print("Invalid input! Enter a valid number.")
-
-nr_letters = get_positive_int("How many letters would you like in your password?\n")
-nr_symbols = get_positive_int("How many symbols would you like?\n")
-nr_numbers = get_positive_int("How many numbers would you like?\n")
-
-# Generate random characters
-password_list = (
-    random.choices(letters, k=nr_letters) +
-    random.choices(symbols, k=nr_symbols) +
-    random.choices(numbers, k=nr_numbers)
-)
-
-# Shuffle password list
-random.shuffle(password_list)
-
-# Convert list to string
-password = "".join(password_list)
-
-print(f"\nYour secure password is: {password}")
+nr_letters = int(input("How many letters would you like in your password?\n"))
+nr_symbols = int(input(f"How many symbols would you like?\n"))
+nr_numbers = int(input(f"How many numbers would you like?\n"))
+pwd = []
+for i in range(nr_letters):
+    pwd.append(random.choice(letters))
+for i in range(nr_symbols):
+    pwd.append(random.choice(symbols))
+for i in range(nr_numbers):
+    pwd.append(random.choice(numbers))
+random.shuffle(pwd)
+password = ""
+for i in range(len(pwd)):
+    password+=pwd[i]
+print(f"Your password is: {password}")
